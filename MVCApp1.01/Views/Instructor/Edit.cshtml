@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+
+@model Instructor
+@{
+    SelectList depts = new SelectList(ViewBag.Depts, "Id", "Name", Model.DepartmentId);
+    SelectList courses = new SelectList(ViewBag.Courses, "Id", "Name", Model.CrsId);
+}
+
+@*action="\instructor\SaveEdit\@Model.Id"*@
+<form asp-controller="instructor" asp-action="SaveEdit" asp-route-id="@Model.Id">
+
+    <div>
+        <input asp-for="Id" type="hidden" />
+    </div>
+
+    <div>
+        @*<label for="Name">Name</label>*@
+        @*<input type="text" name="Name" id="Name" value="@Model.Name" class="form-control" />*@
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+    </div>
+
+    <div>
+        @*<label for="Image">Image</label>
+        <input type="text" name="Image" id="Image" value="@Model.Image" class="form-control" />*@
+        <label asp-for="Image"></label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    <div>
+        @* <label for="Salary">Salary</label>
+        <input type="text" name="Salary" id="Salary" value="@Model.Salary" class="form-control" />*@
+        <label asp-for="Salary"></label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div>
+        @*<label for="Address">Address</label>
+        <input type="text" name="Address" id="Address" value="@Model.Address" class="form-control" />*@
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div>
+        @*<label for="DepartmentId">Department</label>*@
+        @* <select name="DepartmentId" id="DepartmentId" class="form-control">
+        @foreach (var item in ViewBag.Depts)
+        {
+        if (Model.DepartmentId == item.Id)
+        {
+        <option value="@item.Id" selected> @item.Name</option>
+        }
+        else
+        {
+        <option value="@item.Id"> @item.Name</option>
+        }
+        }
+        </select>*@
+
+        <label asp-for="DepartmentId"></label>
+        <select asp-for="DepartmentId" asp-items="depts" class="form-control"></select>
+
+    </div>
+
+    <div>
+        @* <label for="CrsId">Course</label>
+        <select name="CrsId" id="CrsId" class="form-control">
+        @foreach (var item in ViewBag.Courses)
+        {
+        if (item.Id == Model.CrsId)
+        {
+        <option value="@item.Id" selected> @item.Name</option>
+        }
+        else
+        {
+        <option value="@item.Id"> @item.Name</option>
+        }
+        }
+        </select>*@
+
+        <label asp-for="CrsId"></label>
+        <select asp-for="CrsId" asp-items="courses" class="form-control"></select>
+    </div>
+
+    <button type="submit" class="btn btn-success" >Save Changes</button>
+</form>
+
+@section scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

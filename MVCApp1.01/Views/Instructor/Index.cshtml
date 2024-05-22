@@ -1,0 +1,35 @@
+﻿@model List<Instructor>
+
+<center> <h1>Instructor Table</h1></center>
+<table class="table table-bordered text-center table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Salary</th>
+        <th>Address</th>
+        <th>Department</th>
+        <th>Course</th>
+        <th>Edit</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Image</td>
+            <td>@item.Salary</td>
+            <td>@item.Address</td>
+            <td>@item.Department.Name</td>
+            <td>@item.Course.Name</td>
+            <td>
+                <form method="post" action="\Instructor\edit\@item.Id">
+                    @*<input type="submit" class="btn btn-success" value="Edit" />*@
+                    <button type="submit" class="btn btn-success">Edit</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="\Instructor\New">Add New Instructor</a>
